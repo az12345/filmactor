@@ -1,0 +1,58 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.8.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+		maven { url 'http://dl.bintray.com/vermeulen-mp/gradle-plugins' }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "org.gradle.api.plugins:gradle-heroku:0.9.6"
+	}
+}
+heroku {
+
+	//apiKey = 'my-api-key'
+
+	//set this on first run if you don't want a generated name
+	appName = 'filmactor'
+
+	//set this if you are not happy with the default gradlew buildpack
+	//buildpack = 'http://
+}
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'heroku'
+
+group = 'com.filmoteka'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+heroku {
+	//get this from heroku
+	apiKey = 'my-api-key'
+
+	//set this on first run if you don't want a generated name
+	//appName = 'some-unique-app-name'
+
+	//set this if you are not happy with the default gradlew buildpack
+	//buildpack = 'http://somebuildpack
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+	runtime('org.springframework.boot:spring-boot-devtools')
+	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+//	compileOnly('org.projectlombok:lombok')
+
+//	compile("net.sf.dozer:dozer:$dozerVersion")
+//	compile("org.flywaydb:flyway-core:$flywayVersion")
+//
+//	runtime("org.postgresql:postgresql:$postgresqlVersion")
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
